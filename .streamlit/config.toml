@@ -2,3 +2,6 @@
 headless = true
 enableCORS = false
 enableXsrfProtection = false
+
+TELEGRAM_BOT_TOKEN = "8537018580:AAG1kPxlkpH-3Ov2XHueMZMA5OCjQISz7pk"
+TELEGRAM_CHAT_ID = "-1003286262121"
