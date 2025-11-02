@@ -59,7 +59,12 @@ def format_transaction_message(transaction):
 
 # 初始化session state
 if 'transactions' not in st.session_state:
-    st.session_state.transactions = get_transactions() or []
+    try:
+        transactions = get_transactions()
+        st.session_state.transactions = transactions if transactions else []
+    except Exception as e:
+        st.error(f"初始化数据失败: {e}")
+        st.session_state.transactions = []
 
 if 'users' not in st.session_state:
     st.session_state.users = [
@@ -439,4 +444,5 @@ if st.sidebar.button("发送今日总结"):
 #         add_transaction(date(2024, 1, 18), -300, "PTPTN", "教育贷款", 1, "银行卡")
 #         add_transaction(date(2024, 1, 15), 8000, "主业收入", "1月工资", 2, "银行卡")
 #         add_transaction(date(2024, 1, 16), -150, "食物", "超市采购", 2, "银行卡")
+
 #         add_transaction(date(2024, 1, 20), -500, "保险", "人寿保险", 2, "银行卡")
